@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+	</head>
+	<body>
+		<div id="vue-app">
+
+			<h1>V-if</h1>
+			<button v-on:click="error =! error">Toggle Error</button>
+			<button v-on:click="success =! success">Toggle success</button>
+			<!-- 如果 error==true 则显示 404 或success==true 则显示200 -->
+			<!-- <p v-if="error">网络连接错误:404</p>
+			<p v-else-if="success">网络连接成功:200</p> -->
+			
+			
+			 <!-- 
+			 v-show写法
+			  个人理解: 开始就把dom元素和css效果先加载 (先占位的意思)把,F12控制查看到是 display:none状态
+			   而V-if 是没有占位的效果 v-show节省性能开销
+			  -->
+			<p v-show="error">网络连接错误:404</p>
+			<p v-show="success">网络连接成功:200</p>
+		</div>
+
+		<script>
+			var app = new Vue({
+				el: '#vue-app',
+				data: {
+					error: false,
+					success: false
+				},
+				methods: {
+
+				},
+				computed: {
+
+				}
+			})
+		</script>
+	</body>
+</html>

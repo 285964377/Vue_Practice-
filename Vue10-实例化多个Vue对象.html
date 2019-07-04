@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+	</head>
+	<body>
+		<h1>实例化多个Vue对象</h1>
+		<div id="vue-app">
+			<h2>{{title}}</h2>
+			<h3>{{greet}}</h3>
+		</div>
+
+		<div id="vue-app2">
+			<h2>{{title}}</h2>
+			<h3>{{greet}}</h3>
+			<button v-on:click="update">修改APP1实例化的title</button>
+		</div>
+		<script>
+			/**
+			 * 实例化多个Vue 对象
+			 */
+			var app = new Vue({
+				el: '#vue-app',
+				data: {
+					title: "app1的标题"
+				},
+				methods: {
+
+				},
+				computed: {
+					greet: function() {
+						return "哈喽~";
+					},
+				}
+			})
+
+
+			var app2 = new Vue({
+				el: '#vue-app2',
+				data: {
+					title: "app2的标题"
+				},
+				methods: {
+					//实例化2中 修改实例化中的title
+					update: function() {
+						app.title = "改了app1的title";
+					}
+				},
+				computed: {
+					greet: function() {
+						return "哈喽~";
+					},
+				}
+			})
+		</script>
+	</body>
+</html>

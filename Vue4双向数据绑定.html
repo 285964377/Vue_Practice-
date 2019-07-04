@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+
+		<meta charset="utf-8">
+		<title>Vue数据双向绑定</title>
+		<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+	</head>
+	<body>
+		<div id="vue-app">
+			
+			<!-- 
+			 被用来给元素或子组件注册引用信息。
+			 引用信息将会注册在父组件的 $refs 对象上。
+			 如果在普通的 DOM 元素上使用，引用指向的就是 DOM 元素；
+			 如果用在子组件上，
+			 引用就指向组件实例： 
+			-->
+			
+			<h1>数据双向绑定 input | selec | textarea </h1>
+			<label>姓名</label>
+			<!--如果在普通的DOM元素上使用引用指向的就是DOM元素-->
+			<input type="text" ref="name" v-model="name" />
+			<h1>{{name}}</h1>
+			<label>年龄</label>
+	        
+			<input type="text" ref="age" v-model="age" />
+			<h1>{{age}}</h1>
+		</div>
+		<script>
+			var vue = new Vue({
+				el: "#vue-app",
+				data: {
+					name: "是",
+					age: ""
+				},
+				methods: {
+					//$refs 就写fucntion里面用 用了 v-model就用不上这B了
+					lonName: function() {
+						this.name = this.$refs.name.value;
+					},
+					logAge: function() {
+						this.age = this.$refs.age.value
+					}
+
+				},
+
+			})
+		</script>
+
+	</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Vue1</title>
+		<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+	</head>
+	<body>
+		<!-- vue-app 就是根容器 -->
+		<div id="vue-app">
+			<h1>{{greet('2018-4-1')}}</h1>
+			<h1>Name:{{name}}</h1>
+			<p>Title:{{title}}</p>
+			<!-- 属性绑定 -->
+			<a v-bind:href="website">点击跳转到到百度</a>
+			<input type="text" v-bind:value="name">
+			<span v-html="url">
+
+			</span>
+			<!-- 这个是错误的写法 -->
+			<!-- 	<a herf="{{website}}">点击跳转到到百度</a> -->
+		</div>
+		<script>
+			/**
+			 * /**
+			 * 实例化Vue对象
+			 * el : element 需要获取的元素-一定是html中的根容器元素
+			 * data:用于存储数据
+			 * methods:用于存储各种方法
+			 * data-binding:给属相绑定对应的值~ 
+			 */
+			var app = new Vue({
+				el: '#vue-app',
+				data: {
+					name: '常三赵子龙',
+					title: "八嘎!",
+					website: 'https://www.baidu.com',
+					url: "<a href='https://www.baidu.com'>点击跳转到到百度</a>",
+				},
+				methods: {
+					greet: function(data) {
+						return "Good Morning " + this.name + "  当前时间为:" + data
+					}
+				}
+			})
+		</script>
+	</body>
+
+</html>

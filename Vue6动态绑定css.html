@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+	</head>
+	<style>
+		span {
+			background: red;
+			display: inline-block;
+			padding: 10px;
+			color: #fff
+		}
+
+		.changeColor span {
+			background: green;
+		}
+
+		.changeColor span:after {
+			content: "length";
+			margin-left: 10px;
+		}
+
+		/* #b{
+			background: green;
+		} */
+	</style>
+	<body>
+		<!-- <div id="b">
+			是
+		</div> -->
+		<div id="vue-app">
+			<h1>动态CSS Class</h1>
+			<h2 v-bind:class="{red:true,blue:true}">示例1</h2>
+			<!-- <div v-on:click="changeColor = ! changeColor" v-bind:class="{changeColor:changeColor}">
+                  <span>额</span>
+			</div> -->
+                 <!-- 点击之后改变 为 非(!)  -->
+               <button v-on:click="changeColor =! changeColor">改变颜色</button>
+			   <button v-on:click="changeLength =! changeLength">改变长度</button>
+			<h2>示例2</h2>
+			<div v-bind:class="compClass">
+   <span>额</span>
+			</div>
+
+		</div>
+		<script>
+			var app = new Vue({
+				el: '#vue-app',
+				data: {
+					changeColor: false,
+					changeLength: false,
+				},
+				methods: {
+
+				},
+				computed: {
+					compClass: function() {
+						return {
+							changeColor: this.changeColor,
+							changeLength:this.changeLength
+						}
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

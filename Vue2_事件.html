@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Vue-2_事件</title>
+		<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+	</head>
+	<style>
+		#canvas {
+			width: 600px;
+			padding: 200px 20px;
+			text-align: center;
+			border: 1px solid #333;
+		}
+	</style>
+	<body>
+		<div id="vue-app">
+			<a herf="https://www.baidu.com" v-on:click.prevent="alert()" >冲鸭~</a>
+			<h1></h1>
+			<button v-on:click="age++">点击就涨一岁</button>
+			<button v-on:click="age--">点击就减一岁</button>
+			<!-- 不用上面那种++ -- 换成方法 -->
+			<br />
+			<button v-on:click="add(1)">Function点击就涨一岁</button>
+			<button v-on:click="substrac(1)">Function点击就减一岁</button>
+			<button v-on:dblclick="add">双击涨一岁</button>
+			<button v-on:dblclick="substrac">双击就减一岁</button>
+			<button v-on:click="add(10)">单击加10岁</button>
+			<button v-on:click="substrac(10)">单击减10岁</button>
+			<p>my name is :{{age}}</p>
+			<!-- 点击事件将只会触发一次 -->
+			<button @click.once="once">点击事件只会触发一次额</button>
+
+
+
+			<div id="canvas" v-on:mousemove="updateXy">
+				{{x}},{{y}} <!-- function写法 <span v-on:mousemove="stopMoving">Stop Moving</span> -->
+				<!-- 
+		
+
+				<!-- 事件修饰符写法
+				 .stop
+                 .prevent
+                 .capture
+                 .self
+                 .once
+                 .passive
+				 -->
+				<span v-on:mousemove.stop="">Stop Moving</span>
+
+			</div>
+
+		</div>
+		<script>
+			var vue = new Vue({
+				el: "#vue-app",
+				data: {
+					age: "19",
+					y: 0,
+					x: 0,
+				},
+				methods: {
+					add: function(inc) {
+						this.age += inc;
+					},
+					substrac: function(dec) {
+						this.age -= dec;
+					},
+					updateXy: function(evt) {
+						this.y = evt.y;
+						this.x = evt.x;
+						console.log(evt);
+					},
+					stopMoving: function(evt) {
+						evt.stopPropagation();
+					},
+					once: function() {
+						alert("八嘎");
+					},
+					alert: function() {
+						alert("hello world");
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

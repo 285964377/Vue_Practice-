@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+	</head>
+	<body>
+		<div id="vue-app">
+			<h1>V-for</h1>
+			<!-- 数组下标开干
+			{{characters[0]}}
+			{{characters[1]}} -->
+			
+			<!-- for循环开干 -->
+        <ul>
+			<!-- 相当于PHP的一维数组 -->
+			 <li v-for="cha in characters">
+			  {{cha}}
+			</li> 
+			
+		</ul>
+		<ul>
+			 <!-- 介个相当于PHP的二维数组形式 
+			 	<li v-for="user in users">  无法拿到下标形式
+				
+			 -->
+			 <!-- 需要拿到下标时则如下写入 括号里面 第一个数据 第二个下标变量 -->
+			<li v-for="(user,key) in users" :key="key">
+				{{key}}.{{user.name}} - {{user.age}}
+			</li>
+		
+		</ul>
+		<!-- 个人理解:template无需渲染多次容器 div的话会多次循环div容器 改成template之后就不会造成如此情况,大大滴省去了性能开支 -->
+          <template v-for="(user,key) in users">
+			  <h3>{{key}}.{{user.name}}</h3>
+			 <p>Age:-{{user.age}}</p> 
+		  </template>
+		   <hr>
+		  <template v-for="(user,key) in users">
+			  <!-- 把这里的div 改成 template 也不会多次去循环div容器了 哟西 -->
+		  			<template v-for="(val,key) in user ":key="key">
+					
+						<!-- 第二次循环遍历时 这个Key 就是这个数组下面的所有键名 记住是所有
+						   val 则对应的是所有的val 所有哦
+						 -->
+						<p>{{key}}---{{val}}</p>
+					
+					</template>
+		  </template>
+		</div>
+		<script>
+			var app = new Vue({
+				el: '#vue-app',
+				data: {
+					characters: ["赵云", "关羽", "诸葛亮", "李白", "嬴驷"],
+					users: [{
+							name: "白起",
+							age: "18",
+							sex: "男"
+						},
+						{
+							name: "王翦",
+							age: "18",
+							sex: "男"
+						},
+						{
+							name: "商鞅",
+							age: "18",
+							sex: "男"
+						},
+					],
+				},
+				methods: {
+
+				},
+				computed: {
+
+				}
+			})
+		</script>
+	</body>
+</html>

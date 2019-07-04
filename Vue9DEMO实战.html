@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+	</head>
+	<style>
+		#bag {
+			width: 200px;
+			height: 500px;
+			margin: 0 auto;
+			background: url(img/b.jpg) center no-repeat;
+			background-size: 80%
+		}
+
+		#bag.burst {
+			background: url(img/q.jpg);
+		}
+
+		#bag-health {
+			width: 200px;
+			border: 2px #000 solid;
+			margin: 0 auto 20px auto;
+
+		}
+
+		#bag-health div {
+			height: 20px;
+			background: crimson;
+		}
+
+		#contrller {
+			width: 200px;
+			margin: 0 auto;
+
+		}
+
+		#contrller button {
+			margin-left: 20px;
+		}
+	</style>
+	<body>
+
+		<div id="vue-app">
+			<div id="bag" v-bind:class="{burst:ended}">
+
+			</div>
+			<div id="bag-health">
+				<div v-bind:style="{width:health + '%'}"></div>
+			</div>
+			<!-- 控制按钮 -->
+			<div id="contrller">
+				<button v-on:click="punch" v-show="!ended">使劲敲</button>
+				<button v-on:click="restart">重新开始</button>
+			</div>
+		</div>
+		<script>
+			/**
+			 *  逻辑 
+			 *  1.先写入好div容器, 在写好css 相应内容
+			 *  2.将health设置成一百   ended 结束 位fasle
+			 *  punch函数处理逻辑 = 点击一次 减去红条百分之的宽度 且设置为ended为true
+			 *  当达到0宽度时 ended 为ture   !ended(等于true) 则隐藏使劲敲按钮 
+			 *  3.点击重现开始 则重置属性的值
+			 */
+			var app = new Vue({
+				el: '#vue-app',
+				data: {
+					health: 100,
+					ended: false,
+				},
+				methods: {
+					punch: function() {
+						this.health -= 10;
+						if (this.health <= 0) {
+							this.ended = true;
+						}
+					},
+					restart: function() {
+						this.health = 100;
+						this.ended = false;
+					}
+				},
+				computed: {
+
+				}
+			})
+		</script>
+	</body>
+</html>
